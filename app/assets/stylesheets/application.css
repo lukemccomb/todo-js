@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+}
+
+.container {
+    width: 30%;
+    margin: 0 auto;
+}
+
+form input {
+    width: 75%;
+}
+
+form button {
+    width: 75%;
+}

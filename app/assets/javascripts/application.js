@@ -15,5 +15,13 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('body').append("<h1>hello world, I'm from only javascript!</h1>");
+
+  $('.container').prepend("<h1>Todoly</h1>");
+
+  $("form").on("submit", function (e) {
+    e.preventDefault();
+    var todo = $('#todo').val();
+    $("#todo-list").append("<li>" + todo + "</li>")
+  });
+
 });
