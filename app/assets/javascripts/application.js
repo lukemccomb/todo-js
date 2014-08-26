@@ -22,10 +22,17 @@ $(document).ready(function () {
     formHtml += "<form><input id='todo' type='text'/><br/>";
     formHtml += "<button id='submit'>Create Todo</button></form>";
 
-    $('.container').append(formHtml);
+    var container = $('.container')
 
-    $('.container').on('click', '#dismiss', function () {
+    container.append(formHtml);
+
+    container.on('click', '#dismiss', function () {
       $('#createFlash').remove();
+      $('#deleteFlash').remove();
+    });
+
+    container.on('click', '#dismiss', function () {
+
     });
   };
 
@@ -58,7 +65,13 @@ $(document).ready(function () {
 
     $('.remove').on('click', function() {
       var mom = $(this).parent('li');
+
       mom.fadeOut(400);
+
+      $('#flash').empty().append("<div id='deleteFlash'>Todo deleted<a id='dismiss' href='#'>X</a></div>");
+
+      window.setTimeout(function () { $('#deleteFlash').fadeOut() }, 5000);
+
     });
   });
 

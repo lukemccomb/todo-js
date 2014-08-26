@@ -63,3 +63,12 @@ ul li:nth-child(odd) {
     font-weight: 600;
     font-size: 130%;
 }
+
+#deleteFlash {
+    width: 100%;
+    background-color: #c62927;
+    border-radius: 3px;
+    border: 1px solid grey;
+    color: white;
+    padding: 5px;
+}
