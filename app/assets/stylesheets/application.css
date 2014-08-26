@@ -72,3 +72,18 @@ ul li:nth-child(odd) {
     color: white;
     padding: 5px;
 }
+
+.check {
+    width: 30px;
+    float: right;
+    display: inline-block;
+}
+
+.checkmark {
+    width: 30px;
+}
+
+.removeDiv {
+    display: inline-block;
+    float: right;
+}

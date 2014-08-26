@@ -47,12 +47,22 @@ $(document).ready(function () {
   var addTodo = function () {
     var todo = $('#todo').val();
 
-    $('#todo-list').append("<li>" + todo + "<a class='remove' href='#'>X</a>" + "</li>");
+    var check = "";
+
+    $('#todo-list').append("<li>" +
+                           todo +
+                           "<a class='check' href='#'>" +
+                           "<img class='checkmark' src='http://img1.wikia.nocookie.net/__cb20130520141819/okami/images/f/f0/Check_mark.png'>" +
+                           "</a>" + "<div class='removeDiv'>" +
+                           "<a class='remove' href='#'>X</a>" +
+                           "</div>" + "</li>");
 
     $('#flash').empty().append("<div id='createFlash'>Todo created<a id='dismiss' href='#'>X</a></div>");
 
     window.setTimeout(function () { $('#createFlash').fadeOut() }, 5000);
   };
+
+  // create completeTodo function that listens for click on .check and creates a new completed section that the li is then moved to
 
   $("body").on("submit", "form", function (e) {
     e.preventDefault();
