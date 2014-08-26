@@ -30,13 +30,19 @@ $(document).ready(function () {
   };
 
   var setupTodos = function () {
-    $('.container').append("<hr><h2>Todo!</h2><section id='todosection'><ul id='todo-list'></ul></section>");
+    $('.container').append("<hr><h2>Todo!</h2>" +
+                           "<section id='todosection'>" +
+                           "<article id='flash'></article>" +
+                           "<ul id='todo-list'></ul>" +
+                           "</section>");
   };
 
   var addTodo = function () {
     var todo = $('#todo').val();
 
-    $('#todo-list').append("<li>" + todo + "<a class='remove' href='#'>X</a>" + "</li>").prepend("<div id='createFlash'>Todo created<a id='dismiss' href='#'>X</a></div>");
+    $('#todo-list').append("<li>" + todo + "<a class='remove' href='#'>X</a>" + "</li>");
+
+    $('#flash').empty().append("<div id='createFlash'>Todo created<a id='dismiss' href='#'>X</a></div>");
 
     window.setTimeout(function () { $('#createFlash').fadeOut() }, 5000);
   };
