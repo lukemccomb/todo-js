@@ -14,14 +14,48 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $('.container').prepend("<h1>Todoly</h1>");
+  var setupPage = function () {
+    var formHtml = "";
+    formHtml += "<h1>Todo.ly</h1>";
+    formHtml += "<form><input id='todo' type='text'/><br/>";
+    formHtml += "<button id='submit'>Create Todo</button></form>";
 
-  $("form").on("submit", function (e) {
-    e.preventDefault();
+    $('.container').append(formHtml);
+
+    $('.container').on('click', '#dismiss', function () {
+      $('#createFlash').remove();
+    });
+  };
+
+  var setupTodos = function () {
+    $('.container').append("<hr><h2>Todo!</h2><section id='todosection'><ul id='todo-list'></ul></section>");
+  };
+
+  var addTodo = function () {
     var todo = $('#todo').val();
-    $("#todo-list").append("<li>" + todo + "</li>")
+
+    $('#todo-list').append("<li>" + todo + "<a class='remove' href='#'>X</a>" + "</li>").prepend("<div id='createFlash'>Todo created<a id='dismiss' href='#'>X</a></div>");
+
+    window.setTimeout(function () { $('#createFlash').fadeOut() }, 5000);
+  };
+
+  $("body").on("submit", "form", function (e) {
+    e.preventDefault();
+
+    if ($('#todosection').length == 0) {
+      setupTodos();
+    }
+
+    addTodo();
+
+    $('.remove').on('click', function() {
+      var mom = $(this).parent('li');
+      mom.fadeOut(400);
+    });
   });
+
+  setupPage();
 
 });

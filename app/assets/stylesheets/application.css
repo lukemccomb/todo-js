@@ -29,3 +29,37 @@ form input {
 form button {
     width: 75%;
 }
+
+ul li {
+    list-style: none;
+    padding: 10px;
+    font-size: 130%;
+}
+
+ul li:nth-child(odd) {
+    background: #e4e4e4;
+}
+
+#createFlash {
+    width: 100%;
+    background-color: #68a34e;
+    border-radius: 3px;
+    border: 1px solid grey;
+    color: white;
+    padding: 5px;
+}
+
+#dismiss {
+    font-size: 120%;
+    font-family: Helvetica, Sans-Serif;
+    float: right;
+    color: black;
+}
+
+.remove {
+    float: right;
+    color: red;
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 130%;
+}
