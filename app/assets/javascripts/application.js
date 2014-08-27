@@ -31,8 +31,8 @@ $(document).ready(function () {
       $('#deleteFlash').remove();
     });
 
-    container.on('click', '#dismiss', function () {
-
+    container.on('click', '#done', function () {
+      $('#compFlash').remove();
     });
   };
 
@@ -78,7 +78,7 @@ $(document).ready(function () {
     });
 
     var setupComplete = function () {
-      $('.container').append("<hr/><section id='completed'><h1>Complete</h1><ul id='completedTodos'></ul></section>");
+      $('.container').append("<hr/><section id='completed'><h1>Complete</h1><article id='completeFlash'></article><ul id='completedTodos'></ul></section>");
     };
 
     $('.check').on('click', function() {
@@ -89,7 +89,11 @@ $(document).ready(function () {
 
       var mom = $(this).parent('li');
 
-      mom.appendTo('#completedTodos')
+      mom.appendTo('#completedTodos');
+
+      $('#completeFlash').empty().append("<div id='compFlash'>Todo completed<a id='done' href='#'>&#10006;</a></div>");
+
+      window.setTimeout(function () { $('#compFlash').fadeOut() }, 5000);
 
     });
   });
