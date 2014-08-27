@@ -47,22 +47,16 @@ $(document).ready(function () {
   var addTodo = function () {
     var todo = $('#todo').val();
 
-    var check = "";
-
     $('#todo-list').append("<li>" +
                            todo +
-                           "<a class='check' href='#'>" +
-                           "<img class='checkmark' src='http://img1.wikia.nocookie.net/__cb20130520141819/okami/images/f/f0/Check_mark.png'>" +
-                           "</a>" + "<div class='removeDiv'>" +
-                           "<a class='remove' href='#'>X</a>" +
-                           "</div>" + "</li>");
+                           "<a class='check' href='#'>" + "&#10004;  " +
+                           "</a>" + "<a class='remove' href='#'>" + "  &#10006;" + "</a>" +
+                           "</li>");
 
-    $('#flash').empty().append("<div id='createFlash'>Todo created<a id='dismiss' href='#'>X</a></div>");
+    $('#flash').empty().append("<div id='createFlash'>Todo created<a id='dismiss' href='#'>&#10006;</a></div>");
 
     window.setTimeout(function () { $('#createFlash').fadeOut() }, 5000);
   };
-
-  // create completeTodo function that listens for click on .check and creates a new completed section that the li is then moved to
 
   $("body").on("submit", "form", function (e) {
     e.preventDefault();
@@ -78,9 +72,24 @@ $(document).ready(function () {
 
       mom.fadeOut(400);
 
-      $('#flash').empty().append("<div id='deleteFlash'>Todo deleted<a id='dismiss' href='#'>X</a></div>");
+      $('#flash').empty().append("<div id='deleteFlash'>Todo deleted<a id='dismiss' href='#'>&#10006;</a></div>");
 
       window.setTimeout(function () { $('#deleteFlash').fadeOut() }, 5000);
+    });
+
+    var setupComplete = function () {
+      $('.container').append("<hr/><section id='completed'><h1>Complete</h1><ul id='completedTodos'></ul></section>");
+    };
+
+    $('.check').on('click', function() {
+
+      if ($('#completed').length == 0) {
+        setupComplete();
+      }
+
+      var mom = $(this).parent('li');
+
+      mom.appendTo('#completedTodos')
 
     });
   });
