@@ -58,6 +58,70 @@ $(document).ready(function () {
     window.setTimeout(function () { $('#createFlash').fadeOut() }, 5000);
   };
 
+  var removeTodo = function () {
+    $('.remove').on('click', function() {
+      var mom = $(this).parent('li');
+
+      mom.remove();
+
+      removeComplete();
+
+      $('#flash').empty().append("<div id='deleteFlash'>Todo deleted<a id='dismiss' href='#'>&#10006;</a></div>");
+
+      window.setTimeout(function () { $('#deleteFlash').fadeOut() }, 5000);
+
+    });
+  };
+
+  var setupComplete = function () {
+    $('.container').append("<section id='completed'><hr/><h1>Complete</h1><article id='completeFlash'></article><ul id='completedTodos'></ul></section>");
+  };
+
+  var completeTodo = function () {
+    $('.check').on('click', function() {
+
+      if ($('#completed').length == 0) {
+        setupComplete();
+      }
+
+      var mom = $(this).parent('li');
+
+      mom.appendTo('#completedTodos').append('<a class="undo" href="#">&#8635;</a>');
+
+      $(this).remove();
+
+      $('#completeFlash').empty().append("<div id='compFlash'>Todo completed<a id='done' href='#'>&#10006;</a></div>");
+
+      window.setTimeout(function () { $('#compFlash').fadeOut() }, 5000);
+
+    });
+  };
+
+  var removeComplete = function () {
+
+    var compTodos = $('#completedTodos').children('li');
+
+    if ( compTodos.length == 0) {
+      $('#completed').remove();
+    }
+    
+  };
+
+  var undoTodo = function () {
+    $('body').on('click', '.undo', function() {
+
+      var mom = $(this).parent('li');
+
+      mom.appendTo('#todo-list').prepend("<a class='check' href='#'>&#10004;</a>");
+
+      $(this).remove();
+
+      completeTodo();
+
+      removeComplete();
+    });
+  };
+
   $("body").on("submit", "form", function (e) {
     e.preventDefault();
 
@@ -67,44 +131,12 @@ $(document).ready(function () {
 
     addTodo();
 
-    $('.remove').on('click', function() {
-      var mom = $(this).parent('li');
+    removeTodo();
 
-      mom.remove();
+    completeTodo();
 
-      var compTodos = $('#completedTodos').children('li');
+    undoTodo();
 
-      if ( compTodos.length == 0) {
-        $('#completed').remove();
-      }
-
-      $('#flash').empty().append("<div id='deleteFlash'>Todo deleted<a id='dismiss' href='#'>&#10006;</a></div>");
-
-      window.setTimeout(function () { $('#deleteFlash').fadeOut() }, 5000);
-
-    });
-
-    var setupComplete = function () {
-      $('.container').append("<section id='completed'><hr/><h1>Complete</h1><article id='completeFlash'></article><ul id='completedTodos'></ul></section>");
-    };
-
-    $('.check').on('click', function() {
-
-      if ($('#completed').length == 0) {
-        setupComplete();
-      }
-
-      var mom = $(this).parent('li');
-
-      mom.appendTo('#completedTodos');
-
-      $(this).remove();
-
-      $('#completeFlash').empty().append("<div id='compFlash'>Todo completed<a id='done' href='#'>&#10006;</a></div>");
-
-      window.setTimeout(function () { $('#compFlash').fadeOut() }, 5000);
-
-    });
   });
 
   setupPage();

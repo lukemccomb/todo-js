@@ -98,3 +98,9 @@ ul li:nth-child(odd) {
     text-decoration: none;
 
 }
+
+.undo {
+    float: right;
+    text-decoration: none;
+    color: green;
+}
