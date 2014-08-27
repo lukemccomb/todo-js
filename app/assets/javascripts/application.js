@@ -70,15 +70,22 @@ $(document).ready(function () {
     $('.remove').on('click', function() {
       var mom = $(this).parent('li');
 
-      mom.fadeOut(400);
+      mom.remove();
+
+      var compTodos = $('#completedTodos').children('li');
+
+      if ( compTodos.length == 0) {
+        $('#completed').remove();
+      }
 
       $('#flash').empty().append("<div id='deleteFlash'>Todo deleted<a id='dismiss' href='#'>&#10006;</a></div>");
 
       window.setTimeout(function () { $('#deleteFlash').fadeOut() }, 5000);
+
     });
 
     var setupComplete = function () {
-      $('.container').append("<hr/><section id='completed'><h1>Complete</h1><article id='completeFlash'></article><ul id='completedTodos'></ul></section>");
+      $('.container').append("<section id='completed'><hr/><h1>Complete</h1><article id='completeFlash'></article><ul id='completedTodos'></ul></section>");
     };
 
     $('.check').on('click', function() {
@@ -90,6 +97,8 @@ $(document).ready(function () {
       var mom = $(this).parent('li');
 
       mom.appendTo('#completedTodos');
+
+      $(this).remove();
 
       $('#completeFlash').empty().append("<div id='compFlash'>Todo completed<a id='done' href='#'>&#10006;</a></div>");
 
